@@ -1,7 +1,9 @@
 <?php 
     include "component.php";
     include "db.php";
-    // include "operations.php";
+    include "operations.php";
+
+
 
 ?>
 
@@ -27,10 +29,12 @@
     <div class="container text-center">
         <h1 class="my-2 py-4 bg-dark text-light rounded"><i class="fas fa-swatchbook text-light"></i> BookStore</h1>
         <div class="d-flex justify-content-center">
-            <form action="operations.php" method="POST" class="w-50">
+            <form action="<?php $_SERVER['PHP_SELF']?>" method="POST" class="w-50">
                 <?php
-                inputElement("<i class='fas fa-id-badge'></i>","ID","id","");
-                inputElement("<i class='fas fa-book'></i>","Book Name","book_name","");
+
+                        inputElement("<i class='fas fa-id-badge'></i>","ID","id","");
+                        inputElement("<i class='fas fa-book'></i>","Book Name","book_name","");
+                    
             ?>
                 <div class="row">
                     <div class="col">
@@ -43,14 +47,17 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <button id="btn-create" class="btn btn-success" name="create" data-toggle="tooltip"
+                    <div class="row">
+                    <button id="btn-create" class="btn btn-success px-5" name="create" data-toggle="tooltip"
                         data-placement="bottom" title="Create">Create</button>
-                    <button id="btn-read" class="btn btn-primary" name="read" data-toggle="tooltip"
+                    </div>
+                    
+                    <!-- <button id="btn-read" class="btn btn-primary" name="read" data-toggle="tooltip"
                         data-placement="bottom" title="Read">Read</button>
                     <button id="btn-update" class="btn btn-light border" name="read" data-toggle="tooltip"
                         data-placement="bottom" title="Update">Update</button>
                     <button id="btn-delete" class="btn btn-danger" name="delete" data-toggle="tooltip"
-                        data-placement="bottom" title="Delete">Delete</button>
+                        data-placement="bottom" title="Delete">Delete</button> -->
                 </div>
 
                 <table class="table">
@@ -60,7 +67,7 @@
                             <th scope="col">Book Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Publisher</th>
-                            <th scope="col">Edit</th>
+                            <th scope="col">Operations</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,7 +84,11 @@
                             <td><?php echo $r['book_name']?></td>
                             <td><?php echo $r['book_price']?></td>
                             <td><?php echo $r['book_publisher']?></td>
-                            <td><i class="fas fa-edit btnEdit"> Edit</i></td>
+                            <td>
+                                <button class="btn btn-danger">
+                                    <a class="text-light" href="delete.php?id=<?php echo $r['id'];?>">Delete</a>
+                                </button>
+                            </td>
                         </tr>
 
 

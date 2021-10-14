@@ -24,7 +24,6 @@ if (isset($_POST["create"])){
 
         messageNode("error","Please fill all the fields...");
     }
-    header("location:index.php");
 }
 
 // Messages
